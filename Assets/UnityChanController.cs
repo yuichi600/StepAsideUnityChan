@@ -14,6 +14,8 @@ public class UnityChanController : MonoBehaviour {
 	private float turnForce = 500.0f;
 	//左右の移動できる範囲（追加）
 	private float movableRange = 3.4f;
+	//ジャンプするための力（追加）
+	private float upForce = 500.0f;
 
 
 	// Use this for initialization
@@ -21,13 +23,16 @@ public class UnityChanController : MonoBehaviour {
 		//Animatorコンポーネントを取得
 		this.myAnimator = GetComponent<Animator>();
 		//走るアニメーションを開始
-		this.myAnimator.SetFloat ("Speed", 1);
+		//this.myAnimator.SetFloat ("Speed", 1);
 		//Rigidbodyコンポーネントを取得（追加）
 		this.myRigidbody = GetComponent<Rigidbody>();
+		Debug.Log("TEST ="+myRigidbody);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+	
 		//Unityちゃんに前方向の力を加える（追加）
 		 this.myRigidbody.AddForce (this.transform.forward * this.forwardForce);
 		 //Unityちゃんを矢印キーまたはボタンに応じて左右に移動させる（追加）
@@ -37,6 +42,19 @@ public class UnityChanController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.RightArrow)  && this.transform.position.x < this.movableRange) {
 			//右に移動（追加）
 			this.myRigidbody.AddForce (this.turnForce, 0, 0);
+		}
+		
+		//Jumpステートの場合はJumpにfalseをセットする（追加）
+		if (this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName ("Jump")) {
+			this.myAnimator.SetBool ("Jump", false);
+		}
+		
+		//ジャンプしていない時にスペースが押されたらジャンプする（追加）
+		if (Input.GetKeyDown(KeyCode.Space) && this.transform.position.y < 0.5f) {
+			//ジャンプアニメを再生（追加）
+			this.myAnimator.SetBool ("Jump", true);
+			//Unityちゃんに上方向の力を加える（追加）
+			this.myRigidbody.AddForce (this.transform.up * this.upForce);
 		}
 	}
 }
