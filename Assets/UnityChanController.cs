@@ -45,9 +45,11 @@ public class UnityChanController : MonoBehaviour {
 	//15m置きを記録
 	private double distance15 = 0;
 	//アイテムリスト
-	private GameObject[] item_list;
+	private List<GameObject> item_list = new List<GameObject>();
 	//Objectナンバー
 	private int item_no = 0;
+	//削除用ナンバー
+	private int del_no =0;
 	
 
 	// Use this for initialization
@@ -76,13 +78,16 @@ public class UnityChanController : MonoBehaviour {
 		}else{
 			
 			if((this.distance15-this.transform.position.z)>15||(this.distance15-this.transform.position.z)<-15){
-				
+				//追加系の処理
 				this.distance15=this.transform.position.z;
-				//item_list[item_no] = this.CreateItem(this.transform.position.z);
-				//item_no++;
-				item_list[0] = this.CreateItem(this.transform.position.z);
-				Debug.Log(item_list );
-				
+				item_list.Insert(item_no,this.CreateItem(this.transform.position.z));
+				item_no++;
+			}
+
+			//削除系の処理
+			if(item_no>2){
+				del_no = item_no-1;
+				item_list.RemoveAt(item_no);
 			}
 		}
 
@@ -118,6 +123,7 @@ public class UnityChanController : MonoBehaviour {
 		}
 
 	}
+	
 	//トリガーモードで他のオブジェクトと接触した場合の処理（追加）
 	void OnTriggerEnter(Collider other) {
 		//障害物に衝突した場合（追加）
