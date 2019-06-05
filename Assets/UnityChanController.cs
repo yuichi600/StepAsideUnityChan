@@ -78,9 +78,11 @@ public class UnityChanController : MonoBehaviour {
 			if((this.distance15-this.transform.position.z)>15||(this.distance15-this.transform.position.z)<-15){
 				
 				this.distance15=this.transform.position.z;
+				//item_list[item_no] = this.CreateItem(this.transform.position.z);
+				//item_no++;
 				item_list[0] = this.CreateItem(this.transform.position.z);
 				Debug.Log(item_list );
-				//item_no++;
+				
 			}
 		}
 
