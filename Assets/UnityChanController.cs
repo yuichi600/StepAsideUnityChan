@@ -39,13 +39,15 @@ public class UnityChanController : MonoBehaviour {
 	public GameObject carPrefab;
 	//coinPrefabを入れる
 	public GameObject coinPrefab;
-	//cornPrefabを入れる
 	public GameObject conePrefab;
 	//アイテムを出すx方向の範囲
 	private float posRange = 3.4f;
 	//15m置きを記録
 	private double distance15 = 0;
-
+	//アイテムリスト
+	private GameObject[] item_list;
+	//Objectナンバー
+	private int item_no = 0;
 	
 
 	// Use this for initialization
@@ -59,21 +61,26 @@ public class UnityChanController : MonoBehaviour {
 		this.stateText =GameObject.Find("GameResultText");
 		//スコアのオブジェクトを取得
 		this.scoreText = GameObject.Find("ScoreText");
+		
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		//最初の15m移動時の処理
 		if(this.distance15==0){
 			Debug.Log(this.transform.position.z);
 			this.distance15=this.transform.position.z;
+		//継続的な15m移動時の処理
 		}else{
 			
 			if((this.distance15-this.transform.position.z)>15||(this.distance15-this.transform.position.z)<-15){
+				
 				this.distance15=this.transform.position.z;
-				Debug.Log(this.transform.position.z);
-				GameObject coin = Instantiate (coinPrefab) as GameObject;
-				coin.transform.position = new Vector3 (1, coin.transform.position.y,this.transform.position.z);
+				item_list[0] = this.CreateItem(this.transform.position.z);
+				Debug.Log(item_list );
+				//item_no++;
 			}
 		}
 
@@ -86,8 +93,8 @@ public class UnityChanController : MonoBehaviour {
 		}
 		//Unityちゃんに前方向の力を加える（追加）
 		this.myRigidbody.AddForce (this.transform.forward * this.forwardForce);
-		 //Unityちゃんを矢印キーまたはボタンに応じて左右に移動させる（追加）
-		 if ((Input.GetKey (KeyCode.LeftArrow)|| this.isLButtonDown)  && -this.movableRange < this.transform.position.x) {
+		//Unityちゃんを矢印キーまたはボタンに応じて左右に移動させる（追加）
+		if ((Input.GetKey (KeyCode.LeftArrow)|| this.isLButtonDown)  && -this.movableRange < this.transform.position.x) {
 			  //左に移動（追加）
 			 this.myRigidbody.AddForce (-this.turnForce, 0, 0);
 		} else if ((Input.GetKey (KeyCode.RightArrow) || this.isRButtonDown)  && this.transform.position.x < this.movableRange) {
@@ -160,7 +167,12 @@ public class UnityChanController : MonoBehaviour {
 		this.isRButtonDown = false;
 	}
 
-	public void CreateItem(int now_place){
+	public GameObject CreateItem(float now_place){
+
+		GameObject coin = Instantiate (coinPrefab) as GameObject;
+		coin.transform.position = new Vector3 (-3.4f, coin.transform.position.y,now_place+30);
+
+		return coin;
 		/*int num = Random.Range (1, 11);
                         if (num <= 2) {
                                 //コーンをx軸方向に一直線に生成

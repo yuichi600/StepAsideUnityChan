@@ -507,7 +507,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &877440364
+--- !u!114 &877440362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -518,9 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb9c9aab578b5446b02ffa964c26969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carPrefab: {fileID: 0}
-  coinPrefab: {fileID: 0}
-  conePrefab: {fileID: 0}
+  carPrefab: {fileID: 1731734607034938, guid: 51473d3f0ad10b249bd45988ef1d3af6, type: 2}
+  coinPrefab: {fileID: 1966481379395252, guid: 42aed45349fe7464193a23a3ff71ec47, type: 2}
+  conePrefab: {fileID: 1629467988499226, guid: d3f99eab1e908874aa8f39cf64f851c3, type: 2}
 --- !u!199 &877440365
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -635,7 +635,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1432796744
+  randomSeed: -1583059859
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4118,13 +4118,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1202687774}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 6, z: -255}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 6, z: -280}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!114 &1202687779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4189,7 +4189,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 877440364}
+        - m_Target: {fileID: 0}
           m_MethodName: GetMyLeftButtonDown
           m_Mode: 1
           m_Arguments:
@@ -4206,7 +4206,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 877440364}
+        - m_Target: {fileID: 0}
           m_MethodName: GetMyLeftButtonUp
           m_Mode: 1
           m_Arguments:
@@ -4563,7 +4563,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 877440364}
+        - m_Target: {fileID: 0}
           m_MethodName: GetMyJumpButtonDown
           m_Mode: 1
           m_Arguments:
@@ -4907,7 +4907,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 877440364}
+        - m_Target: {fileID: 0}
           m_MethodName: GetMyRightButtonDown
           m_Mode: 1
           m_Arguments:
@@ -4924,7 +4924,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 877440364}
+        - m_Target: {fileID: 0}
           m_MethodName: GetMyRightButtonUp
           m_Mode: 1
           m_Arguments:

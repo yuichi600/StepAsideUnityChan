@@ -18,6 +18,8 @@ public class ItemGenerator : MonoBehaviour {
 	private float posRange = 3.4f;
 
 	void Start () {
+               //  GameObject coin = Instantiate (conePrefab) as GameObject;
+                // coin.transform.position = new Vector3 (-3.4f, coin.transform.position.y,-200);
  //一定の距離ごとにアイテムを生成
                 /* for (int i = startPos; i < goalPos; i+=15) {
                         //どのアイテムを出すのかをランダムに設定
